@@ -1,6 +1,7 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type { ComponentType } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +28,6 @@ function CSSFallbackScene() {
         @keyframes twinkle { 0%,100% { opacity: 0.15; transform: scale(0.8); } 50% { opacity: 0.9; transform: scale(1.2); } }
       `}</style>
       <div className="relative w-[420px] h-[420px]" style={{ perspective: "800px" }}>
-        {/* Orbit rings */}
         {[
           { anim: "orbitSpin 10s linear infinite", color: "#3b82f6" },
           { anim: "orbitSpin2 14s linear infinite", color: "#6366f1" },
@@ -43,7 +43,6 @@ function CSSFallbackScene() {
             }}
           />
         ))}
-        {/* Core glow */}
         <div
           className="absolute inset-[30%] rounded-full"
           style={{
@@ -52,7 +51,6 @@ function CSSFallbackScene() {
             boxShadow: "0 0 60px 20px rgba(99,102,241,0.4), 0 0 120px 40px rgba(59,130,246,0.2)",
           }}
         />
-        {/* Floating particles */}
         {Array.from({ length: 24 }).map((_, i) => {
           const angle = (i / 24) * 360;
           const r = 140 + (i % 3) * 30;
@@ -78,14 +76,18 @@ function CSSFallbackScene() {
   );
 }
 
+interface ThreeComps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Canvas: ComponentType<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  OrbitControls: ComponentType<any>;
+  TorusKnot: ComponentType;
+  FloatingParticles: ComponentType;
+}
+
 function ThreeCanvas() {
   const [loaded, setLoaded] = useState(false);
-  const [Comps, setComps] = useState<{
-    Canvas: React.ComponentType<React.ComponentProps<import("@react-three/fiber").Canvas>>;
-    OrbitControls: React.ComponentType<React.ComponentProps<import("@react-three/drei").OrbitControls>>;
-    TorusKnot: React.ComponentType;
-    FloatingParticles: React.ComponentType;
-  } | null>(null);
+  const [Comps, setComps] = useState<ThreeComps | null>(null);
 
   useEffect(() => {
     Promise.all([
