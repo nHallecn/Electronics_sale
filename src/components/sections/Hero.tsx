@@ -32,7 +32,7 @@ export function Hero() {
   return (
     <section 
       ref={sectionRef} 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 to-black pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-linear-to-br from-gray-900 to-black pt-20"
     >
       <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center z-10">
         <div ref={textRef} className="space-y-6">
