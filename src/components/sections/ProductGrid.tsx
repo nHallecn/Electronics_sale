@@ -91,7 +91,7 @@ export function ProductGrid() {
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-black py-24 text-white md:py-32">
-      <div className="mx-auto max-w-[1500px] px-6 lg:px-10">
+      <div className="relative z-10 mx-auto max-w-[1500px] px-6 lg:px-10">
         <div className="product-heading mx-auto mb-12 flex max-w-4xl flex-col items-center gap-5 text-center md:mb-16">
           <div className="max-w-3xl">
             <h2 className="text-4xl font-bold leading-tight tracking-normal md:text-6xl">
