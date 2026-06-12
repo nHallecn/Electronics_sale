@@ -1,7 +1,9 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight, CreditCard, RefreshCcw, ShieldCheck, Truck } from "lucide-react";
 import type { ComponentType } from "react";
+import { Button } from "@/components/ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -151,21 +153,77 @@ export function ThreeFeature() {
         {webgl ? <ThreeCanvas /> : <CSSFallbackScene />}
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 text-center pointer-events-none">
+      <div className="relative z-10 container mx-auto px-6 pointer-events-none">
         <div
           ref={textRef}
-          className="space-y-6 max-w-3xl mx-auto backdrop-blur-sm bg-black/20 p-12 rounded-3xl border border-white/10"
+          className="mx-auto grid max-w-6xl gap-8 rounded-[28px] border border-white/10 bg-black/35 p-6 text-left shadow-2xl shadow-black/30 backdrop-blur-md md:grid-cols-[1.05fr_0.95fr] md:p-10 lg:p-12"
         >
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-white">
-            Technology{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-600">
-              Reimagined
-            </span>
-          </h2>
-          <p className="text-xl text-gray-300">
-            Pushing the boundaries of what's physically possible. Our latest processor architecture
-            delivers unprecedented power with microscopic precision.
-          </p>
+          <div className="flex flex-col justify-center space-y-6">
+            <div className="inline-flex w-fit items-center rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-blue-100">
+              Premium electronics, handled end to end
+            </div>
+            <h2 className="max-w-2xl text-4xl font-bold leading-tight tracking-normal text-white md:text-6xl">
+              Upgrade your setup without the second guessing.
+            </h2>
+            <p className="max-w-xl text-lg leading-8 text-gray-300 md:text-xl">
+              Choose the right phone, TV, laptop, or appliance with clear warranties, fast delivery,
+              flexible payments, and support after checkout.
+            </p>
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row pointer-events-auto">
+              <Button size="lg" className="rounded-full px-7 py-6 text-base">
+                Shop best deals
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full border-white/20 bg-white/5 px-7 py-6 text-base text-white hover:bg-white/10"
+              >
+                Compare products
+              </Button>
+            </div>
+          </div>
+
+          <div className="rounded-[22px] border border-white/10 bg-white/[0.06] px-6 py-2 md:px-8">
+            {[
+              {
+                icon: Truck,
+                title: "Fast delivery and pickup",
+                text: "Get eligible orders delivered quickly or collect in store when it suits you.",
+              },
+              {
+                icon: ShieldCheck,
+                title: "Warranty-backed devices",
+                text: "Every featured product includes clear warranty coverage and verified support.",
+              },
+              {
+                icon: CreditCard,
+                title: "Flexible payment options",
+                text: "Split larger upgrades into manageable payments without slowing checkout down.",
+              },
+              {
+                icon: RefreshCcw,
+                title: "Easy exchanges",
+                text: "Changed your mind or picked the wrong spec? Swap eligible items with less friction.",
+              },
+            ].map((item, index, list) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className={`flex gap-5 py-6 ${index < list.length - 1 ? "border-b border-white/10" : ""}`}
+                >
+                  <div className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-500/15 text-blue-300">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-gray-400 md:text-base">{item.text}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
