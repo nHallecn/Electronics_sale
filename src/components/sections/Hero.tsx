@@ -1,172 +1,125 @@
-import { Component, Suspense, useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
-import { Stage } from "@react-three/drei";
-import * as THREE from "three";
+import { ArrowRight, Sparkles } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import { Model } from "@/components/models/Scene.jsx";
+import featuredTvImg from "@/assets/images/featured-tv.png";
 
-class ModelErrorBoundary extends Component<
-  { children: ReactNode; fallback: ReactNode },
-  { hasError: boolean }
-> {
-  state = { hasError: false };
-
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-
-  render() {
-    if (this.state.hasError) return this.props.fallback;
-    return this.props.children;
-  }
-}
-
-function ModelFallback() {
-  return <div className="h-full min-h-[420px] w-full" />;
-}
-
-function RotatablePhone() {
-  const groupRef = useRef<THREE.Group>(null);
-  const draggingRef = useRef(false);
-  const baseRotationRef = useRef({ x: 0.08, y: -0.35, z: 0.04 });
-  const targetRotationRef = useRef({ ...baseRotationRef.current });
-
-  useFrame((_state, delta) => {
-    const group = groupRef.current;
-    if (!group) return;
-
-    const ease = 1 - Math.pow(0.0008, delta);
-    group.rotation.x = THREE.MathUtils.lerp(group.rotation.x, targetRotationRef.current.x, ease);
-    group.rotation.y = THREE.MathUtils.lerp(group.rotation.y, targetRotationRef.current.y, ease);
-    group.rotation.z = THREE.MathUtils.lerp(group.rotation.z, targetRotationRef.current.z, ease);
-  });
-
-  const resetRotation = () => {
-    draggingRef.current = false;
-    targetRotationRef.current = { ...baseRotationRef.current };
-  };
-
-  const handlePointerDown = (event: ThreeEvent<PointerEvent>) => {
-    event.stopPropagation();
-    const target = event.target as Element & {
-      setPointerCapture?: (pointerId: number) => void;
-    };
-    target.setPointerCapture?.(event.pointerId);
-    draggingRef.current = true;
-  };
-
-  const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
-    if (!draggingRef.current) return;
-
-    targetRotationRef.current = {
-      x: THREE.MathUtils.clamp(
-        targetRotationRef.current.x + event.nativeEvent.movementY * 0.004,
-        -0.55,
-        0.55
-      ),
-      y: targetRotationRef.current.y + event.nativeEvent.movementX * 0.006,
-      z: baseRotationRef.current.z,
-    };
-  };
-
-  return (
-    <group
-      ref={groupRef}
-      rotation={[
-        baseRotationRef.current.x,
-        baseRotationRef.current.y,
-        baseRotationRef.current.z,
-      ]}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={resetRotation}
-      onPointerCancel={resetRotation}
-      onPointerLeave={resetRotation}
-    >
-      <Model scale={1.1} position={[0, -4, 0]} />
-    </group>
-  );
-}
-
-function HeroPhoneModel() {
-  return (
-    <ModelErrorBoundary fallback={<ModelFallback />}>
-      <Canvas
-        camera={{ position: [0, 0, 120], fov: 35 }}
-        dpr={[1, 2]}
-        gl={{ alpha: true, antialias: true }}
-        className="cursor-grab active:cursor-grabbing"
-      >
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[4, 8, 6]} intensity={1.4} />
-        <directionalLight position={[-6, 3, -4]} intensity={0.8} color="#60a5fa" />
-        <Suspense fallback={null}>
-          <Stage adjustCamera={false} environment="city" intensity={0.7} shadows={false}>
-            <RotatablePhone />
-          </Stage>
-        </Suspense>
-      </Canvas>
-    </ModelErrorBoundary>
-  );
-}
-
+const metrics = [
+  { value: "30%", label: "bundle savings" },
+  { value: "24h", label: "delivery options" },
+  { value: "4K+", label: "premium picks" },
+];
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const modelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline();
-    
-    if (textRef.current && modelRef.current) {
-      tl.fromTo(
-        textRef.current.children,
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out" }
-      ).fromTo(
-        modelRef.current,
-        { y: 100, opacity: 0, scale: 0.9 },
-        { y: 0, opacity: 1, scale: 1, duration: 1.5, ease: "power3.out" },
-        "-=0.8"
-      );
-    }
+    if (!sectionRef.current) return;
 
-    return () => {
-      tl.kill();
-    };
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
+
+      tl.fromTo(
+        ".hero-bg",
+        { scale: 1.08, opacity: 0.55 },
+        { scale: 1, opacity: 0.82, duration: 1.6, ease: "power3.out" }
+      )
+        .fromTo(
+          ".hero-copy > *",
+          { y: 48, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9, stagger: 0.12, ease: "power3.out" },
+          "-=1.1"
+        )
+        .fromTo(
+          ".hero-product",
+          { y: 80, opacity: 0, scale: 0.92, rotate: -5 },
+          { y: 0, opacity: 1, scale: 1, rotate: 0, duration: 1.1, ease: "power3.out" },
+          "-=0.75"
+        )
+        .fromTo(
+          ".hero-metric",
+          { y: 28, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: "power3.out" },
+          "-=0.55"
+        );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-linear-to-br from-gray-900 to-black pt-20"
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-[92svh] items-end overflow-hidden bg-black px-6 pb-12 pt-32 text-white md:pb-16"
     >
-      <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center z-10">
-        <div ref={textRef} className="space-y-6">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight">
-            Designed to <span className="text-primary">Amaze.</span>
+      <div className="absolute inset-0">
+        <img
+          src={featuredTvImg}
+          alt="Premium electronics display"
+          className="hero-bg h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-linear-to-r from-black via-black/70 to-black/25" />
+        <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-black/30" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-black to-transparent" />
+      </div>
+
+      <div className="relative z-10 mx-auto flex w-full max-w-[1500px] flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
+        <div className="hero-copy max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 py-2 text-sm font-bold text-blue-100 backdrop-blur">
+            <Sparkles className="h-4 w-4 text-blue-300" />
+            New season deals are live
+          </div>
+
+          <h1 className="mt-6 text-5xl font-bold leading-[0.95] tracking-normal md:text-7xl lg:text-8xl">
+            Upgrade every screen in your life.
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-lg">
-            Experience the future in the palm of your hand. The all-new NexGen flagship redefines what's possible with a seamless design and uncompromised performance.
+
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300 md:text-xl">
+            Discover flagship phones, cinematic TVs, smarter appliances, and display gear selected
+            for sharper work, richer entertainment, and easier everyday living.
           </p>
-          <div className="pt-4">
-            <Button size="lg" className="text-lg px-8 py-6 rounded-full">
-              Explore Now
+
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <Button size="lg" className="rounded-full px-8 py-6 text-base">
+              Shop latest products
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="rounded-full border-white/20 bg-white/[0.05] px-8 py-6 text-base text-white backdrop-blur hover:bg-white/10"
+            >
+              View today&apos;s deals
             </Button>
           </div>
-        </div>
-        <div className="relative">
-          <div
-            ref={modelRef}
-            className="relative z-10 h-[520px] max-h-[70vh] min-h-[420px] w-full touch-none"
-            aria-label="Rotatable NexGen Flagship Smartphone 3D model"
-          >
-            <HeroPhoneModel />
+
+          <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3">
+            {metrics.map((metric) => (
+              <div
+                key={metric.label}
+                className="hero-metric rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-4 backdrop-blur"
+              >
+                <p className="text-2xl font-bold md:text-3xl">{metric.value}</p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                  {metric.label}
+                </p>
+              </div>
+            ))}
           </div>
-          {/* Background glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/20 blur-[120px] rounded-full -z-10 pointer-events-none" />
+        </div>
+
+        <div className="hero-product pointer-events-none relative hidden min-h-[540px] w-[430px] shrink-0 lg:block">
+          <div className="absolute bottom-8 right-10 h-[500px] w-[240px] rounded-[44px] border border-white/20 bg-black/45 shadow-2xl shadow-blue-500/20 backdrop-blur" />
+          <img
+            src="/hero-phone.png"
+            alt="Flagship smartphone"
+            className="absolute bottom-0 right-0 h-[560px] max-w-none object-contain drop-shadow-2xl"
+          />
+          <div className="absolute bottom-16 left-0 rounded-3xl border border-white/10 bg-white/[0.08] px-6 py-5 backdrop-blur">
+            <p className="text-sm font-bold uppercase tracking-wide text-blue-200">Featured</p>
+            <p className="mt-1 text-2xl font-bold">NexGen Phone X</p>
+          </div>
         </div>
       </div>
     </section>
