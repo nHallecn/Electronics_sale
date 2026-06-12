@@ -6,6 +6,7 @@ import NotFound from "@/pages/not-found";
 
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
+import { LatestProducts } from "@/components/sections/LatestProducts";
 import { ProductGrid } from "@/components/sections/ProductGrid";
 import { ThreeFeature } from "@/components/sections/ThreeFeature";
 import { FeaturedProduct } from "@/components/sections/FeaturedProduct";
@@ -20,6 +21,7 @@ function Home() {
     <main className="w-full bg-background min-h-screen text-foreground overflow-x-hidden">
       <Navbar />
       <Hero />
+      <LatestProducts />
       <ProductGrid />
       <ThreeFeature />
       <FeaturedProduct />
