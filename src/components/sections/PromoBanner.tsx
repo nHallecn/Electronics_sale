@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, BadgePercent, ShieldCheck, Sparkles, Truck } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import featuredTvImg from "@/assets/images/featured-tv.png";
+import featuredTvImg from "@/assets/images/kitpack.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -76,10 +76,10 @@ export function PromoBanner() {
 
       <div className="relative z-10 mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-10">
         <div className="promo-copy max-w-2xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm font-bold text-blue-100">
+          {/* <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm font-bold text-blue-100">
             <Sparkles className="h-4 w-4 text-blue-300" />
             Limited-time upgrade event
-          </div>
+          </div> */}
 
           <h2 className="mt-6 text-5xl font-bold leading-[0.98] tracking-normal md:text-7xl">
             Build your dream setup for less.
@@ -91,14 +91,14 @@ export function PromoBanner() {
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" className="rounded-full px-8 py-6 text-base">
+            <Button size="lg" className="rounded-full px-5 py-2 text-sm">
               Shop the event
               <ArrowRight className="h-4 w-4" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full border-white/20 bg-white/[0.04] px-8 py-6 text-base text-white hover:bg-white/10"
+              className="rounded-full border-white/20 bg-white/[0.04] px-5 py-2 text-sm text-white hover:bg-white/10"
             >
               View bundles
             </Button>
@@ -115,11 +115,7 @@ export function PromoBanner() {
               className="h-full w-full object-cover opacity-80 transition duration-700 hover:scale-105"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent" />
-            <img
-              src="/hero-phone.png"
-              alt="Flagship smartphone"
-              className="absolute bottom-4 right-8 h-[76%] object-contain drop-shadow-2xl"
-            />
+            
             <div className="absolute bottom-6 left-6">
               <p className="text-sm font-bold uppercase tracking-wide text-blue-200">
                 Bundle offer

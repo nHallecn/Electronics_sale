@@ -109,7 +109,7 @@ export function ProductGrid() {
             return (
               <article
                 key={product.title}
-                className="product-card group relative flex min-h-[520px] flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#171719] p-5 shadow-2xl shadow-black/25 transition duration-500 hover:-translate-y-2 hover:border-white/20"
+                className="product-card group relative flex min-h-[455px] flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#171719] p-5 shadow-2xl shadow-black/25 transition duration-500 hover:-translate-y-2 hover:border-white/20"
               >
                 <div
                   className={`pointer-events-none absolute inset-x-8 top-8 h-40 rounded-full bg-linear-to-r ${product.accent} opacity-20 blur-3xl transition duration-500 group-hover:opacity-35`}
@@ -124,27 +124,30 @@ export function ProductGrid() {
                   </div>
                 </div>
 
-                <div className="product-visual relative mt-8 flex h-64 items-center justify-center rounded-[22px] bg-black/45 p-5">
+                <div className="product-visual relative mt-6 flex h-56 items-center justify-center overflow-hidden rounded-[22px] bg-black/45 p-5">
                   <img
                     src={product.image}
                     alt={product.title}
                     className="max-h-full max-w-full object-contain drop-shadow-2xl transition duration-700 group-hover:scale-105"
                   />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-5 z-10 flex translate-y-4 justify-center opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                    <button className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-bold text-black shadow-lg shadow-black/25 transition hover:bg-blue-100">
+                      Shop category
+                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                    </button>
+                  </div>
                 </div>
 
-                <div className="relative mt-auto pt-8">
+                <div className="relative mt-auto pt-6">
                   <p className={`mb-3 bg-linear-to-r ${product.accent} bg-clip-text text-sm font-bold text-transparent`}>
                     {product.price}
                   </p>
                   <h3 className="text-3xl font-bold leading-tight">{product.title}</h3>
-                  <p className="mt-4 min-h-[84px] text-base leading-7 text-zinc-400">
+                  <p className="mt-4 text-base leading-7 text-zinc-400">
                     {product.description}
                   </p>
-                  <button className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-white transition group-hover:text-blue-300">
-                    Shop category
-                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                  </button>
                 </div>
+
               </article>
             );
           })}

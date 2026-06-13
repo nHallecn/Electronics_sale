@@ -51,7 +51,7 @@ export function FeaturedProduct() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-[90vh] bg-[#0a0a0f] flex items-center overflow-hidden py-24">
+    <section ref={containerRef} className="group relative min-h-[90vh] bg-[#0a0a0f] flex items-center overflow-hidden py-24">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-10" />
         <img 
@@ -76,10 +76,9 @@ export function FeaturedProduct() {
           <p className="text-xl text-gray-400">
             The NexGen Neo-OLED 8K Series. Self-lit pixels create perfect black and infinite contrast, bringing out the darkest details in the brightest scenes.
           </p>
-          <div className="flex flex-wrap gap-4 pt-4">
-            <Button size="lg" className="px-8 py-6 rounded-full text-lg">Buy Now</Button>
-            <Button size="lg" variant="outline" className="px-8 py-6 rounded-full text-lg bg-transparent border-white/20 hover:bg-white/10">
-              View Gallery
+          <div className="pt-4 opacity-0 translate-y-4 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
+            <Button size="lg" className="rounded-full bg-white px-5 py-2 text-sm text-black hover:bg-white/90">
+              View
             </Button>
           </div>
         </div>
