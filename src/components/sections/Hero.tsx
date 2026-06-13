@@ -2,10 +2,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 import { Button } from "@/components/ui/button";
-import featuredTvImg from "@/assets/images/featured-tv.png";
+import featuredTvImg from "@/assets/images/heroimg.png";
 
-const heroVideo =
-  "https://videos.pexels.com/video-files/3141208/3141208-uhd_2560_1440_25fps.mp4";
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -43,16 +41,7 @@ export function Hero() {
           alt="Premium electronics campaign"
           className="hero-media absolute inset-0 h-full w-full object-cover"
         />
-        <video
-          className="hero-media absolute inset-0 h-full w-full scale-105 object-cover opacity-70 mix-blend-screen"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={featuredTvImg}
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+  
         <div className="absolute inset-0 bg-linear-to-b from-black/35 via-black/10 to-black/65" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-black to-transparent" />
       </div>
@@ -65,13 +54,13 @@ export function Hero() {
           Premium phones, TVs, laptops, and smart home tech selected for everyday brilliance.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button size="lg" className="rounded-full bg-white px-8 py-6 text-base text-black hover:bg-white/90">
+          <Button size="lg" className="rounded-full bg-white px-5 py-2 text-sm text-black hover:bg-white/90">
             Learn more
           </Button>
           <Button
             size="lg"
             variant="outline"
-            className="rounded-full border-white bg-transparent px-8 py-6 text-base text-white hover:bg-white/10"
+            className="rounded-full border-white bg-transparent px-5 py-2 text-sm text-white hover:bg-white/10"
           >
             Shop now
           </Button>

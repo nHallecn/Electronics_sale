@@ -170,14 +170,14 @@ export function ThreeFeature() {
               flexible payments, and support after checkout.
             </p>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row pointer-events-auto">
-              <Button size="lg" className="rounded-full px-7 py-6 text-base">
+              <Button size="lg" className="rounded-full px-5 py-2 text-sm">
                 Shop best deals
                 <ArrowRight className="h-4 w-4" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-full border-white/20 bg-white/5 px-7 py-6 text-base text-white hover:bg-white/10"
+                className="rounded-full border-white/20 bg-white/5 px-5 py-2 text-sm text-white hover:bg-white/10"
               >
                 Compare products
               </Button>

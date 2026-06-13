@@ -3,16 +3,60 @@ import { Canvas } from "@react-three/fiber";
 import { ContactShadows, Environment, Float, PresentationControls, RoundedBox } from "@react-three/drei";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight } from "lucide-react";
-
-import { Model as PhoneModel } from "@/components/models/Scene.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function PhonePreview() {
   return (
-    <group rotation={[0.08, -0.4, 0.02]} scale={0.72} position={[0, -2, 0]}>
-      <PhoneModel />
+    <group rotation={[0.1, -0.42, 0.03]} scale={0.95} position={[0, -1.2, 0]}>
+      <RoundedBox args={[17, 32, 2.4]} radius={2.8} smoothness={16}>
+        <meshStandardMaterial color="#dbeafe" roughness={0.18} metalness={0.85} />
+      </RoundedBox>
+      <RoundedBox args={[14.8, 28.8, 0.24]} radius={2.1} smoothness={14} position={[0, 0, 1.34]}>
+        <meshStandardMaterial
+          color="#020617"
+          emissive="#0f172a"
+          emissiveIntensity={0.24}
+          roughness={0.08}
+          metalness={0.25}
+        />
+      </RoundedBox>
+      <mesh position={[-2.3, 1.4, 1.5]} rotation={[0, 0, -0.18]}>
+        <planeGeometry args={[9.2, 22]} />
+        <meshStandardMaterial
+          color="#38bdf8"
+          emissive="#2563eb"
+          emissiveIntensity={0.36}
+          transparent
+          opacity={0.28}
+        />
+      </mesh>
+      <mesh position={[4.1, -3.4, 1.52]} rotation={[0, 0, 0.32]}>
+        <planeGeometry args={[5.8, 18]} />
+        <meshStandardMaterial
+          color="#f472b6"
+          emissive="#db2777"
+          emissiveIntensity={0.24}
+          transparent
+          opacity={0.24}
+        />
+      </mesh>
+      <RoundedBox args={[5.8, 0.55, 0.18]} radius={0.28} smoothness={8} position={[0, 13.3, 1.58]}>
+        <meshStandardMaterial color="#111827" roughness={0.2} />
+      </RoundedBox>
+      <mesh position={[5.1, 13.3, 1.6]}>
+        <circleGeometry args={[0.5, 32]} />
+        <meshStandardMaterial color="#020617" roughness={0.12} metalness={0.75} />
+      </mesh>
+      <RoundedBox args={[5.4, 0.42, 0.16]} radius={0.25} smoothness={8} position={[0, -13.4, 1.58]}>
+        <meshStandardMaterial color="#f8fafc" roughness={0.16} metalness={0.3} />
+      </RoundedBox>
+      <RoundedBox args={[0.32, 4.2, 0.54]} radius={0.18} smoothness={6} position={[8.7, 4.6, 0.12]}>
+        <meshStandardMaterial color="#bfdbfe" roughness={0.18} metalness={0.85} />
+      </RoundedBox>
+      <RoundedBox args={[0.32, 3.1, 0.54]} radius={0.18} smoothness={6} position={[-8.7, 6.8, 0.12]}>
+        <meshStandardMaterial color="#bfdbfe" roughness={0.18} metalness={0.85} />
+      </RoundedBox>
     </group>
   );
 }
@@ -172,7 +216,6 @@ const latestProducts = [
     title: "NexGen Phone X",
     category: "Smartphone",
     description: "A brighter mobile flagship with an AI-ready camera system.",
-    price: "From $699",
     accent: "from-sky-400 to-blue-600",
     model: <PhonePreview />,
   },
@@ -180,7 +223,6 @@ const latestProducts = [
     title: "NeoVision OLED",
     category: "Smart TV",
     description: "Cinematic color, deep contrast, and a razor-thin display profile.",
-    price: "From $899",
     accent: "from-violet-400 to-fuchsia-500",
     model: <TvPreview />,
   },
@@ -188,7 +230,6 @@ const latestProducts = [
     title: "NexBook Pro",
     category: "Laptop",
     description: "A powerful everyday workstation with a vivid portable display.",
-    price: "From $1,299",
     accent: "from-orange-400 to-rose-500",
     model: <LaptopPreview />,
   },
@@ -196,7 +237,6 @@ const latestProducts = [
     title: "Tab Ultra",
     category: "Tablet",
     description: "Large-screen creativity, note-taking, and streaming in one slim slab.",
-    price: "From $549",
     accent: "from-emerald-400 to-teal-500",
     model: <TabletPreview />,
   },
@@ -249,9 +289,6 @@ export function LatestProducts() {
 
       <div className="relative z-10 mx-auto max-w-[1500px] px-6 lg:px-10">
         <div className="latest-heading mx-auto mb-14 max-w-4xl text-center">
-          <p className="text-sm font-bold uppercase tracking-wide text-blue-300">
-            Latest products
-          </p>
           <h2 className="mt-4 text-4xl font-bold leading-tight tracking-normal md:text-6xl">
             Explore the new lineup in 3D.
           </h2>
@@ -264,31 +301,29 @@ export function LatestProducts() {
           {latestProducts.map((product) => (
             <article
               key={product.title}
-              className="latest-card group relative min-h-[560px] overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.055] p-5 shadow-2xl shadow-black/25 transition duration-500 hover:-translate-y-2 hover:border-white/20 hover:bg-white/[0.075]"
+              className="latest-card group relative min-h-[455px] overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.055] p-5 shadow-2xl shadow-black/25 transition duration-500 hover:-translate-y-2 hover:border-white/20 hover:bg-white/[0.075]"
             >
               <div
                 className={`absolute inset-x-10 top-8 h-40 rounded-full bg-linear-to-r ${product.accent} opacity-20 blur-3xl transition duration-500 group-hover:opacity-35`}
               />
 
-              <div className="latest-canvas relative h-[330px] rounded-[24px] bg-black/35">
+              <div className="latest-canvas relative h-[270px] overflow-hidden rounded-[24px] bg-black/35">
                 <ProductCanvas>{product.model}</ProductCanvas>
+                <div className="absolute inset-x-0 bottom-6 z-10 flex translate-y-4 justify-center opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  <button className="rounded-full bg-white px-5 py-2 text-sm font-bold text-black shadow-lg shadow-black/30 transition hover:bg-blue-100">
+                    View
+                  </button>
+                </div>
               </div>
 
-              <div className="relative mt-7">
+              <div className="relative mt-6">
                 <p className={`bg-linear-to-r ${product.accent} bg-clip-text text-sm font-bold uppercase tracking-wide text-transparent`}>
                   {product.category}
                 </p>
                 <h3 className="mt-2 text-3xl font-bold">{product.title}</h3>
-                <p className="mt-4 min-h-[78px] text-base leading-7 text-zinc-400">
+                <p className="mt-4 text-base leading-7 text-zinc-400">
                   {product.description}
                 </p>
-                <div className="mt-7 flex items-center justify-between gap-4">
-                  <p className="text-lg font-bold text-white">{product.price}</p>
-                  <button className="inline-flex items-center gap-2 text-sm font-bold text-white transition group-hover:text-blue-300">
-                    View
-                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                  </button>
-                </div>
               </div>
             </article>
           ))}
