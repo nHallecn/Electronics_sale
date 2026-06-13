@@ -73,7 +73,7 @@ export function FeaturedProduct() {
           <h2 className="text-5xl md:text-7xl font-bold leading-tight">
             Infinite Contrast.<br />Absolute Beauty.
           </h2>
-          <p className="text-xl text-gray-400">
+          <p className="text-sm leading-6 text-gray-400">
             The NexGen Neo-OLED 8K Series. Self-lit pixels create perfect black and infinite contrast, bringing out the darkest details in the brightest scenes.
           </p>
           <div className="pt-4 opacity-0 translate-y-4 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">

@@ -82,7 +82,7 @@ export function FeaturesStrip() {
           <h2 className="mt-4 text-4xl font-bold leading-tight tracking-normal md:text-6xl">
             Built to feel fast, clear, and reliable.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-zinc-400">
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-zinc-400">
             The details customers notice every day, refined for smoother use across work,
             entertainment, and everything between.
           </p>
@@ -110,7 +110,7 @@ export function FeaturesStrip() {
                     <p className={`bg-linear-to-r ${feature.accent} bg-clip-text text-4xl font-bold text-transparent`}>
                       {feature.stat}
                     </p>
-                    <p className="mt-1 text-xs font-bold uppercase tracking-wide text-zinc-500">
+                    <p className="mt-1 text-sm font-bold uppercase tracking-wide text-zinc-500">
                       {feature.label}
                     </p>
                   </div>
@@ -118,7 +118,7 @@ export function FeaturesStrip() {
 
                 <div className="relative mt-16">
                   <h3 className="text-3xl font-bold leading-tight">{feature.title}</h3>
-                  <p className="mt-4 text-base leading-7 text-zinc-400">
+                  <p className="mt-4 text-sm leading-6 text-zinc-400">
                     {feature.description}
                   </p>
                 </div>
