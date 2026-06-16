@@ -165,7 +165,7 @@ export function ThreeFeature() {
             <h2 className="max-w-2xl text-4xl font-bold leading-tight tracking-normal text-white md:text-6xl">
               Upgrade your setup without the second guessing.
             </h2>
-            <p className="max-w-xl text-lg leading-8 text-gray-300 md:text-xl">
+            <p className="max-w-xl text-sm leading-6 text-gray-300">
               Choose the right phone, TV, laptop, or appliance with clear warranties, fast delivery,
               flexible payments, and support after checkout.
             </p>
@@ -218,7 +218,7 @@ export function ThreeFeature() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-gray-400 md:text-base">{item.text}</p>
+                    <p className="mt-2 text-sm leading-6 text-gray-400">{item.text}</p>
                   </div>
                 </div>
               );

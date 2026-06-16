@@ -98,7 +98,7 @@ export function ProductGrid() {
               Find the tech that fits your world.
             </h2>
           </div>
-          <p className="max-w-2xl text-lg leading-7 text-zinc-400">
+          <p className="max-w-2xl text-sm leading-6 text-zinc-400">
             Browse the essentials across mobile, entertainment, home appliances, and displays.
           </p>
         </div>
@@ -116,7 +116,7 @@ export function ProductGrid() {
                 />
 
                 <div className="relative flex items-center justify-between">
-                  <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-zinc-300">
+                  <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-sm font-semibold uppercase tracking-wide text-zinc-300">
                     {product.eyebrow}
                   </span>
                   <div className={`rounded-full bg-linear-to-r ${product.accent} p-2 text-white`}>
@@ -143,7 +143,7 @@ export function ProductGrid() {
                     {product.price}
                   </p>
                   <h3 className="text-3xl font-bold leading-tight">{product.title}</h3>
-                  <p className="mt-4 text-base leading-7 text-zinc-400">
+                  <p className="mt-4 text-sm leading-6 text-zinc-400">
                     {product.description}
                   </p>
                 </div>

@@ -118,7 +118,7 @@ export function LatestProducts() {
           <h2 className="mt-4 text-4xl font-bold leading-tight tracking-normal md:text-6xl">
             Explore the new lineup in 3D.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-zinc-400">
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-zinc-400">
             Drag each product to inspect the shape, then release to let it settle back into place.
           </p>
         </div>
@@ -147,7 +147,7 @@ export function LatestProducts() {
                   {product.category}
                 </p>
                 <h3 className="mt-2 text-3xl font-bold">{product.title}</h3>
-                <p className="mt-4 text-base leading-7 text-zinc-400">
+                <p className="mt-4 text-sm leading-6 text-zinc-400">
                   {product.description}
                 </p>
               </div>

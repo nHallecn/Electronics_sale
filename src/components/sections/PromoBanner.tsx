@@ -85,7 +85,7 @@ export function PromoBanner() {
             Build your dream setup for less.
           </h2>
 
-          <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-400 md:text-xl">
+          <p className="mt-6 max-w-xl text-sm leading-6 text-zinc-400">
             Pair a flagship screen, phone, or smart appliance and unlock instant savings, delivery
             perks, and purchase protection in one checkout.
           </p>

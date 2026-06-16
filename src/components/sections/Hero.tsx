@@ -50,7 +50,7 @@ export function Hero() {
         <h1 className="text-5xl font-bold leading-[0.95] tracking-normal text-white md:text-7xl lg:text-8xl">
           Meet your next upgrade.
         </h1>
-        <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-white/85 md:text-xl">
+        <p className="mt-5 max-w-2xl text-sm font-medium leading-6 text-white/85">
           Premium phones, TVs, laptops, and smart home tech selected for everyday brilliance.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
